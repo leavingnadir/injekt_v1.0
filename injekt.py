@@ -1,3 +1,9 @@
+import shutil
+
+if not shutil.which("nmap"):
+    print("Nmap is not installed. Please install it first.")
+    sys.exit()
+
 import subprocess
 import sys
 
@@ -19,6 +25,14 @@ except ImportError:
     print("Installing psutil...")
     install("psutil")
     import psutil
+
+# Auto install python-nmap
+try:
+    import nmap
+except ImportError:
+    print("Installing python-nmap...")
+    install("python-nmap")
+    import nmap
 
 import platform
 from datetime import datetime
@@ -73,12 +87,14 @@ from datetime import datetime
 def port_scan(target, start_port, end_port):
     print(f"Scanning target: {target} for open ports from {start_port} to {end_port}...")
     open_ports = []
-    for port in range(start_port, end_port):
+
+    for port in range(start_port, end_port + 1):
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        sock.setdefaulttimeout(1)
+        sock.settimeout(1)
         result = sock.connect_ex((target, port))
         if result == 0:
             open_ports.append(port)
+
         sock.close()
     return open_ports
 
@@ -99,8 +115,8 @@ def vulnerability_scan(target):
     print(f"Scanning target {target} for vulnerabilities...")
     nm = nmap.PortScanner()
     try:
-        nm.scan(hosts-target, arguments='-O -sV --script=vuln')
-            return nm[target]
+        nm.scan(hosts=target, arguments='-O -sV --script=vuln')
+        return nm[target]
     except Exception as e:
         print(f"Error during vulnerability scan: {e}")
         return None
