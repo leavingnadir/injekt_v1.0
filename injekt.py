@@ -50,14 +50,16 @@ def show_banner():
                  _/ |                               
                 |__/                                
     """)
-    
-    print(Fore.CYAN + f"User        : {platform.node()}")
-    print(Fore.YELLOW + f"OS          : {platform.system()} {platform.release()}")
-    print(Fore.MAGENTA + f"CPU         : {platform.processor()}")
-    print(Fore.BLUE + f"RAM         : {round(psutil.virtual_memory().total / (1024**3),2)} GB")
-    print(Fore.GREEN + f"Python Ver  : {platform.python_version()}")
-    print(Fore.RED + f"Time        : {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(Fore.WHITE + "-" * 55)
+print("\n" + "-" * 55)
+
+print(Fore.CYAN + f"Project      : Injekt -  Network & Vulnerability Scanner")
+print(Fore.YELLOW +f"Version      : v1.0.0")
+print(Fore.MAGENTA + f"Created      : 2026")
+print(Fore.BLUE + f"Languages    : Python")
+print(Fore.GREEN + f"Author       : leaving Nadir - Hirusha Ranaweera")
+print(Fore.RED + f"Repo         : https://github.com/leavingnadir/injekt_v1.0.git")
+print(Fore.WHITE + f"Dependencies : nmap, colorama, psutil")
+print("-" * 55)
 
 if __name__ == "__main__":
     show_banner()
