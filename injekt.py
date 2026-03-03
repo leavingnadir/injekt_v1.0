@@ -1,9 +1,3 @@
-import shutil
-
-if not shutil.which("nmap"):
-    print("Nmap is not installed. Please install it first.")
-    sys.exit()
-
 import subprocess
 import sys
 
